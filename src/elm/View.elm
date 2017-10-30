@@ -1,7 +1,7 @@
 module View exposing (..)
 
 import Array exposing (Array)
-import Html exposing (Html, button, div, h1, input, table, tr, td, text)
+import Html exposing (Html, button, div, h1, input, span, table, tr, td, text)
 import Html.Attributes exposing (class, type_, checked)
 import Html.Events exposing (onClick)
 import Msgs exposing (Msg(..))
@@ -19,18 +19,26 @@ receiptCheckbox receipt =
         [ class "receipt-checkbox"
         , type_ "checkbox"
         , checked receipt.checked
-        , onClick (CheckReceipt receipt.id)
+        , onClick (CheckReceiptById receipt.id)
         ]
         []
+
+deleteButton : Receipt -> Html Msg
+deleteButton receipt =
+    td [ class "delete-receipt"
+         , onClick <| DeleteReceiptById receipt.id ]
+         [ text "Delete" ]
 
 
 receiptRow : Receipt -> Html Msg
 receiptRow receipt =
     tr [ class "receipt-row" ]
         [ td [] [ receiptCheckbox receipt ]
+        , receiptField (toString receipt.id)
         , receiptField (getVendor receipt)
         , receiptField (getTotal receipt)
         , receiptField (getCategory receipt)
+        , deleteButton receipt
         ]
 
 
@@ -95,6 +103,9 @@ view model =
                     sortReceipts model.sortBy model.receipts
         , allToggle "All" CheckAll
         , allToggle "None" UncheckAll
+        , allToggle "Delete Selected" DeleteSelected
         , h1 [ class "receipt-total" ]
-             [ text <| String.append "Total: $ " <| toString <| sumCheckedReceipts model.receipts ]
+             [ text <| String.append "Selected: $ " <| toString <| sumCheckedReceipts model.receipts ]
+        , h1 [ class "receipt-total" ]
+             [ text <| String.append "Total: $ " <| toString <| sumReceipts model.receipts ]
         ]

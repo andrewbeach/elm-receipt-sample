@@ -6,6 +6,8 @@ import Models exposing (Receipt, ReceiptOrder)
 type Msg
     = NoOp
     | ToggleSort ReceiptOrder
-    | CheckReceipt Int
+    | CheckReceiptById Int
     | CheckAll
     | UncheckAll
+    | DeleteReceiptById Int
+    | DeleteSelected

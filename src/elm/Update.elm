@@ -22,18 +22,13 @@ uncheckReceipt receipt =
     { receipt | checked = False }
 
 
-checkReceiptAtIndex : Int -> Array Receipt -> Array Receipt
-checkReceiptAtIndex index receipts =
-    let
-        receiptAtIndex =
-            Array.get index receipts
-    in
-        case receiptAtIndex of
-            Just receipt ->
-                Array.set index (toggleReceiptChecked receipt) receipts
-
-            Nothing ->
-                receipts
+checkReceiptById : Int -> Array Receipt -> Array Receipt
+checkReceiptById id receipts =
+  Array.map
+    (\r -> if r.id == id
+           then toggleReceiptChecked r
+           else r)
+    receipts
 
 
 checkAllReceipts : Array Receipt -> Array Receipt
@@ -46,6 +41,11 @@ uncheckAllReceipts receipts =
     Array.map uncheckReceipt receipts
 
 
+deleteReceiptById : Int -> Array Receipt -> Array Receipt
+deleteReceiptById id receipts =
+    Array.filter (\r -> r.id /= id) receipts
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -55,8 +55,14 @@ update msg model =
         ToggleSort order ->
             ( { model | sortBy = order }, Cmd.none )
 
-        CheckReceipt index ->
-            ( { model | receipts = checkReceiptAtIndex index model.receipts }, Cmd.none )
+        CheckReceiptById id ->
+            ( { model | receipts = checkReceiptById id model.receipts }, Cmd.none )
+
+        DeleteReceiptById id ->
+            ( { model | receipts = deleteReceiptById id model.receipts }, Cmd.none )
+
+        DeleteSelected ->
+            ( { model | receipts = Array.filter (not << .checked) model.receipts }, Cmd.none )
 
         CheckAll ->
             ( { model | receipts = checkAllReceipts model.receipts }, Cmd.none )

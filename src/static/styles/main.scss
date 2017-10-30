@@ -6,6 +6,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 .receipt-list {
   margin: 50px;
+  min-width: 90%;
 }
 
 .receipt-row {
@@ -24,4 +25,13 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .toggle {
   padding: 10px 15px 10px 15px;
   margin: 20px 30px 20px 30px;
+}
+
+.delete-receipt {
+  color: gray;
+}
+
+.delete-receipt:hover {
+  cursor: pointer;
+  color: rgb(244, 119, 66);
 }
