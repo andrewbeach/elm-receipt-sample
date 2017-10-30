@@ -3,3 +3,25 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
 // can add Boostrap overrides, additional Sass/CSS below...
+
+.receipt-list {
+  margin: 50px;
+}
+
+.receipt-row {
+  font-size: 20px;
+  border-bottom: 1px solid gray;
+}
+
+.receipt-row-field {
+  padding: 15px 40px 15px 40px;
+}
+
+.receipt-total {
+  margin-left: 50px;
+}
+
+.toggle {
+  padding: 10px 15px 10px 15px;
+  margin: 20px 30px 20px 30px;
+}

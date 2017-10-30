@@ -1,12 +1,12 @@
 {
-  "name": "elm-webpack-starter",
-  "description": "Webpack setup for writing Elm apps",
+  "name": "elm-receipt-viewer",
+  "description": "Sample app experimenting with data",
   "version": "0.8.6",
   "license": "MIT",
-  "author": "Peter Morawiec",
+  "author": "Andrew Beach",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moarwick/elm-webpack-starter"
+    "url": "https://github.com/andrewbeach/elm-receipt-viewer"
   },
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
@@ -27,7 +27,7 @@
     "jquery": "^3.2.1",
     "node-sass": "^4.5.1",
     "postcss-loader": "^1.3.3",
-    "rimraf": "^2.6.1",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.0",
     "url-loader": "^0.5.8",

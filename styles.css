@@ -1,0 +1,10 @@
+.receipt-row {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  //font-size: 10px;
+}
+
+.receipt-list {
+  margin: 20px;
+}
